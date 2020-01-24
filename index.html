@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $('#button').click(function (e) {
+                var inputvalue = $("#input").val();
+                var inputvalue2 = $("#input2").val();
+                var inputvalue3 = $("#input3").val();
+                numberParsed = inputvalue + inputvalue2;
+                linkTemplate = "https://api.whatsapp.com/send?phone=" + numberParsed + "&text=" + inputvalue3 + "&source=&data=";
+                //window.location.replace(" http://www.example.com/page/" + inputvalue);
+                window.location.replace(linkTemplate);
+                //https://stackoverflow.com/questions/24266205/create-dynamic-link-based-on-text-input-field
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <input type="text" value="54" id="input">
+    <input type="tel" value="1126487670" id="input2">
+    <input type="text" value="Hola como estas" id="input3">
+    <button type="button" id="button">Enviar Whatsapp</button>
+</body>
+
+</html>
