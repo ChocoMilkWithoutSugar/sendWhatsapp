@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+    <script>
+        // hack to get the plugin to work without loading jQuery
+        window.jQuery = window.$ = function () {
+            return {
+                on: function () { }
+            };
+        };
+        window.$.fn = {};
+    </script>
+
+
+    <script>
+
+        var input = document.querySelector("input"),
+            form = document.querySelector("form"),
+            result = document.querySelector("#result");
+
+        var iti = intlTelInput(input, {
+            initialCountry: "tw"
+        });
+
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            var num = iti.getNumber(),
+                valid = iti.isValidNumber();
+            result.textContent = "Number: " + num + ", valid: " + valid;
+        }, false);
+
+        input.addEventListener("focus", function () {
+            result.textContent = "";
+        }, false);
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/10.0.2/js/intlTelInput.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/10.0.2/js/utils.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/9.0.6/css/intlTelInput.css">
+    <link rel="stylesheet" href="https://intl-tel-input.com/node_modules/intl-tel-input/build/css/demo.css?3">
+    <script src="https://codepen.io/jackocnr/pen/ggzEjv.js"></script>
+    <style>
+        body {
+            margin: 20px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1>Demo: Pure JavaScript International Telephone Input</h1>
+    <p>Note: this demo pulls in the pure JavaScript plugin code from <a href="https://codepen.io/jackocnr/pen/ggzEjv"
+            target="_blank">this codepen</a>.</p>
+
+    <form>
+        <input type="tel">
+        <button type="submit">Validate</button>
+    </form>
+
+    <p id="result"></p>
+</body>
+
+</html>
